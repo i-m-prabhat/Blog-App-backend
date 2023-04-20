@@ -1,0 +1,15 @@
+{
+    "database": {
+        "oracle": {},
+        "mysql": {},
+        "mongodb": {
+            "atlas": "mongodb+srv://nodeapp:nodeapppassword@cluster0.05tihdi.mongodb.net/?retryWrites=true",
+            "cluster": "",
+            "local": "mongodb://0.0.0.0:27017",
+            "confingRules": {
+                "useNewUrlParser": true,
+                "useUnifiedTopology": true
+            }
+        }
+    }
+}
