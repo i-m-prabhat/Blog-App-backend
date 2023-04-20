@@ -2,6 +2,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const indexRoute = require("./routes/indexRoute");
 const userRoute = require("./routes/userRoute")
+const articalRoute = require("./routes/articalRoute")
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(bodyparser.json());
 
 app.use('/', indexRoute);
 app.use('/api', userRoute);
+app.use('/api', articalRoute);
 
 app.use('*', (req, res) =>
 {
