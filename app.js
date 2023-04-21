@@ -5,8 +5,9 @@ const userRoute = require("./routes/userRoute")
 const articalRoute = require("./routes/articalRoute")
 
 const app = express();
+const cors = require("cors");
 
-
+app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 

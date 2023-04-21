@@ -16,6 +16,7 @@ const UserController = {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
             const newUser = new User({
+                name: req.body.name,
                 email: req.body.email,
                 password: hashedPassword,
             });
@@ -32,7 +33,7 @@ const UserController = {
         } catch (err)
         {
             console.log(err);
-            res.status(500).json({ message: 'Internal server error' });
+            res.status(500).json({ message: 'Something went wrong' });
         }
     },
     login: async (req, res) =>
@@ -55,7 +56,26 @@ const UserController = {
 
             res.status(200).json({
                 token: token,
-                message: "User Login Successfully",
+                // message: "User Login Successfully",
+                message: `Welcome Back ${user.name}`,
+                name: user.name,
+                error: false
+            });
+        } catch (err)
+        {
+            console.log(err);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+    allUser: async (req, res) =>
+    {
+        try
+        {
+            const user = await User.find({});
+
+            res.status(200).json({
+                message: "User Found Successfully",
+                data: user,
                 error: false
             });
         } catch (err)
