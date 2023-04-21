@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Article = require('../model/Artical');
 const Comment = require('../model/Comment');
+const User = require('../model/User');
 
 const ArticalController = {
     getArtical: async (req, res) =>
