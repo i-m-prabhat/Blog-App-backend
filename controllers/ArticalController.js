@@ -124,6 +124,7 @@ const ArticalController = {
             const newComment = new Comment({
                 article: article._id,
                 author: author._id,
+                name: req.body.name,
                 content: req.body.content,
             });
 
