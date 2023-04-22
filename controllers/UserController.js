@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require("../model/User");
+const Article = require('../model/Artical');
 
 const UserController = {
     signup: async (req, res) =>
@@ -59,6 +60,7 @@ const UserController = {
                 // message: "User Login Successfully",
                 message: `Welcome Back ${user.name}`,
                 name: user.name,
+                email: user.email,
                 error: false
             });
         } catch (err)
@@ -82,6 +84,27 @@ const UserController = {
         {
             console.log(err);
             res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+    articleUser: async (req, res) =>
+    {
+        try
+        {
+            const { email } = req.params;
+            const user = await User.findOne({ email }); // findOne instead of find
+
+            if (!user)
+            {
+                return res.status(404).send("User not found");
+            }
+            console.log({ user: user._id });
+            const userArticles = await Article.find({ user: user.email }).populate("user"); // use _id instead of email
+
+            res.send(userArticles);
+        } catch (err)
+        {
+            console.error(err);
+            res.status(500).send("Server error");
         }
     }
 }
