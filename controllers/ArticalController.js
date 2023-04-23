@@ -45,6 +45,18 @@ const ArticalController = {
             res.status(500).json({ error: 'Server error' });
         }
     },
+    getArticlesByUser: async (req, res, next) =>
+    {
+        try
+        {
+            const userId = req.params.userId;
+            const articles = await Article.find({ author: userId }).populate('author');
+            res.json(articles);
+        } catch (error)
+        {
+            next(error);
+        }
+    },
     createArtical: async (req, res) =>
     {
         try

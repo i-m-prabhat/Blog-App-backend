@@ -55,12 +55,15 @@ const UserController = {
 
             const token = jwt.sign({ userId: user._id }, 'secretkey');
 
+            const articles = await Article.find({ author: user._id });
+
             res.status(200).json({
                 token: token,
                 // message: "User Login Successfully",
                 message: `Welcome Back ${user.name}`,
                 name: user.name,
                 email: user.email,
+                articles: articles,
                 error: false
             });
         } catch (err)
