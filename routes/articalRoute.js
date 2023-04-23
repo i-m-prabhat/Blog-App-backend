@@ -1,5 +1,5 @@
 const express = require("express");
-const ArticalController = require("../controllers/ArticalController");
+const ArticalController = require("../controllers/ArticalController.js");
 const router = express.Router();
 
 router.get("/articles", ArticalController.getArtical);
