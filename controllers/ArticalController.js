@@ -25,6 +25,26 @@ const ArticalController = {
             res.status(500).json({ message: 'Internal server error' });
         }
     },
+    getSingleArticle: async (req, res) =>
+    {
+        const id = req.params.id;
+
+        try
+        {
+            const article = await Article.findById(id);
+
+            if (!article)
+            {
+                return res.status(404).json({ error: 'Article not found' });
+            }
+
+            res.json(article);
+        } catch (error)
+        {
+            console.error(error);
+            res.status(500).json({ error: 'Server error' });
+        }
+    },
     createArtical: async (req, res) =>
     {
         try
